@@ -1,26 +1,52 @@
 /*
-EJERCICIO 2: CLASIFICACIÓN DE NOTAS
-Enunciado: Programa que lea la nota de un estudiante (0-20) y muestre:
-• "Excelente" si la nota es 18 a 20.
-• "Aprobado" si está entre 11 y 17.
-• "Desaprobado" si es menor que 11.
+EJERCICIO 2: Suma de números del 1 al N
+Enunciado: Solicita un número entero N y calcula la suma de todos los números desde 1 hasta N.
 */
 
 import 'dart:io';
 
 void main() {
-  print('=== EJERCICIO 2: CLASIFICACIÓN DE NOTAS ===');
-  print('Ingresa la nota del estudiante (0-20): ');
+  print('=== EJERCICIO 2: SUMA DE NÚMEROS DEL 1 AL N ===');
+  print('Enunciado: Solicita un número entero N y calcula la suma de todos los números desde 1 hasta N.\n');
   
-  double nota = double.parse(stdin.readLineSync()!);
+  print('Ingrese un número entero N:');
   
-  if (nota >= 18 && nota <= 20) {
-    print('Excelente');
-  } else if (nota >= 11 && nota < 18) {
-    print('Aprobado');
-  } else if (nota >= 0 && nota < 11) {
-    print('Desaprobado');
+  String? input = stdin.readLineSync();
+  
+  if (input != null && input.isNotEmpty) {
+    try {
+      int n = int.parse(input);
+      
+      if (n <= 0) {
+        print('Error: El número debe ser positivo.');
+        return;
+      }
+      
+      int suma = 0;
+      String operacion = '';
+      
+      // Calculamos la suma y construimos la operación para mostrar
+      for (int i = 1; i <= n; i++) {
+        suma += i;
+        operacion += i.toString();
+        if (i < n) {
+          operacion += ' + ';
+        }
+      }
+      
+      print('\nCalculando la suma de números del 1 al $n:');
+      print('═' * 50);
+      print('Operación: $operacion');
+      print('Resultado: $suma');
+      
+      // También mostramos la fórmula matemática
+      int formulaResultado = (n * (n + 1)) ~/ 2;
+      print('\nVerificación con fórmula n(n+1)/2 = $n($n+1)/2 = $formulaResultado');
+      
+    } catch (e) {
+      print('Error: Por favor ingrese un número entero válido.');
+    }
   } else {
-    print('Nota inválida. Debe estar entre 0 y 20.');
+    print('Error: No ingresó ningún número.');
   }
 }

@@ -1,29 +1,50 @@
 /*
-EJERCICIO 4: CLASIFICACIÓN DE EDADES
-Enunciado: Programa que lea la edad de una persona y muestre:
-• "Niño" si es menor de 12 años.
-• "Adolescente" si está entre 12 y 17 años.
-• "Adulto" si está entre 18 y 59 años.
-• "Adulto mayor" si tiene 60 o más.
+EJERCICIO 4: El vigilante de un edificio
+Enunciado: Un vigilante debe revisar las 8 puertas del edificio cada noche. 
+El sistema debe mostrar un mensaje como:
+Puerta 1 revisada
+Puerta 2 revisada
+...
+Puerta 8 revisada
 */
 
 import 'dart:io';
 
 void main() {
-  print('=== EJERCICIO 4: CLASIFICACIÓN DE EDADES ===');
-  print('Ingresa la edad de la persona: ');
+  print('=== EJERCICIO 4: EL VIGILANTE DE UN EDIFICIO ===');
+  print('Enunciado: Un vigilante debe revisar las 8 puertas del edificio cada noche.');
+  print('El sistema debe mostrar un mensaje para cada puerta revisada.\n');
   
-  int edad = int.parse(stdin.readLineSync()!);
+  print('Iniciando ronda de vigilancia...');
+  print('═' * 40);
   
-  if (edad < 0) {
-    print('Edad inválida');
-  } else if (edad < 12) {
-    print('Niño');
-  } else if (edad >= 12 && edad <= 17) {
-    print('Adolescente');
-  } else if (edad >= 18 && edad <= 59) {
-    print('Adulto');
+  // Simulamos la revisión de las 8 puertas
+  for (int puerta = 1; puerta <= 8; puerta++) {
+    // Simulamos un pequeño tiempo de revisión
+    sleep(Duration(milliseconds: 500));
+    
+    print('Puerta $puerta revisada');
+  }
+  
+  print('═' * 40);
+  print('✅ Ronda de vigilancia completada. Todas las puertas han sido revisadas.');
+  
+  // Funcionalidad adicional: permitir al usuario hacer otra ronda
+  print('\n¿Desea realizar otra ronda de vigilancia? (s/n):');
+  String? respuesta = stdin.readLineSync()?.toLowerCase();
+  
+  if (respuesta == 's' || respuesta == 'si' || respuesta == 'sí') {
+    print('\nIniciando nueva ronda...');
+    print('═' * 40);
+    
+    for (int puerta = 1; puerta <= 8; puerta++) {
+      sleep(Duration(milliseconds: 500));
+      print('Puerta $puerta revisada');
+    }
+    
+    print('═' * 40);
+    print('✅ Segunda ronda completada.');
   } else {
-    print('Adulto mayor');
+    print('Fin del turno de vigilancia.');
   }
 }

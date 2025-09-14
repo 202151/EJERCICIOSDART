@@ -1,19 +1,34 @@
 /*
-EJERCICIO 1: NÚMERO PAR O IMPAR
-Enunciado: Programa que determine si un número ingresado es par o impar.
+EJERCICIO 1: Tabla de multiplicar personalizada
+Enunciado: Pide al usuario un número y muestra su tabla de multiplicar del 1 al 12.
 */
 
 import 'dart:io';
 
 void main() {
-  print('=== EJERCICIO 1: NÚMERO PAR O IMPAR ===');
-  print('Ingresa un número entero: ');
+  print('=== EJERCICIO 1: TABLA DE MULTIPLICAR PERSONALIZADA ===');
+  print('Enunciado: Pide al usuario un número y muestra su tabla de multiplicar del 1 al 12.\n');
   
-  int numero = int.parse(stdin.readLineSync()!);
+  print('Ingrese un número para mostrar su tabla de multiplicar del 1 al 12:');
   
-  if (numero % 2 == 0) {
-    print('El número $numero es PAR');
+  String? input = stdin.readLineSync();
+  
+  if (input != null && input.isNotEmpty) {
+    try {
+      int numero = int.parse(input);
+      
+      print('\nTabla de multiplicar del $numero:');
+      print('═' * 30);
+      
+      for (int i = 1; i <= 12; i++) {
+        int resultado = numero * i;
+        print('$numero × $i = $resultado');
+      }
+      
+    } catch (e) {
+      print('Error: Por favor ingrese un número válido.');
+    }
   } else {
-    print('El número $numero es IMPAR');
+    print('Error: No ingresó ningún número.');
   }
 }

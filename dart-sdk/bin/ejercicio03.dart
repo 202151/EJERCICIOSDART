@@ -1,31 +1,62 @@
 /*
-EJERCICIO 3: MAYOR DE TRES NÚMEROS
-Enunciado: Escribe un programa que reciba tres números y muestre cuál es el mayor de ellos.
+EJERCICIO 3: Números pares e impares
+Enunciado: Pide un número entero N y muestra por separado los números pares e impares entre 1 y N.
 */
 
 import 'dart:io';
 
 void main() {
-  print('=== EJERCICIO 3: MAYOR DE TRES NÚMEROS ===');
+  print('=== EJERCICIO 3: NÚMEROS PARES E IMPARES ===');
+  print('Enunciado: Pide un número entero N y muestra por separado los números pares e impares entre 1 y N.\n');
   
-  print('Ingresa el primer número: ');
-  double num1 = double.parse(stdin.readLineSync()!);
+  print('Ingrese un número entero N:');
   
-  print('Ingresa el segundo número: ');
-  double num2 = double.parse(stdin.readLineSync()!);
+  String? input = stdin.readLineSync();
   
-  print('Ingresa el tercer número: ');
-  double num3 = double.parse(stdin.readLineSync()!);
-  
-  double mayor;
-  
-  if (num1 >= num2 && num1 >= num3) {
-    mayor = num1;
-  } else if (num2 >= num1 && num2 >= num3) {
-    mayor = num2;
+  if (input != null && input.isNotEmpty) {
+    try {
+      int n = int.parse(input);
+      
+      if (n <= 0) {
+        print('Error: El número debe ser positivo.');
+        return;
+      }
+      
+      List<int> pares = [];
+      List<int> impares = [];
+      
+      // Separamos números pares e impares
+      for (int i = 1; i <= n; i++) {
+        if (i % 2 == 0) {
+          pares.add(i);
+        } else {
+          impares.add(i);
+        }
+      }
+      
+      print('\nRESULTADOS PARA N = $n:');
+      print('═' * 40);
+      
+      print('\nNÚMEROS PARES:');
+      if (pares.isNotEmpty) {
+        print('${pares.join(', ')}');
+        print('Total de números pares: ${pares.length}');
+      } else {
+        print('No hay números pares en el rango.');
+      }
+      
+      print('\nNÚMEROS IMPARES:');
+      if (impares.isNotEmpty) {
+        print('${impares.join(', ')}');
+        print('Total de números impares: ${impares.length}');
+      } else {
+        print('No hay números impares en el rango.');
+      }
+      
+    } catch (e) {
+      print('Error: Por favor ingrese un número entero válido.');
+    }
   } else {
-    mayor = num3;
+    print('Error: No ingresó ningún número.');
   }
-  
-  print('El mayor número es: $mayor');
 }
